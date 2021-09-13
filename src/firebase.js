@@ -1,6 +1,6 @@
 // import firebase from "firebase";
 import { initializeApp } from "firebase/app";
-import { getAuth } from "firebase/auth";
+import { getAuth , createUserWithEmailAndPassword , signInWithEmailAndPassword } from "firebase/auth";
 
 const firebaseConfig = {
     apiKey              : process.env.REACT_APP_API_KEY ,
@@ -15,4 +15,30 @@ const firebaseConfig = {
 // Initialize Firebase
 initializeApp(firebaseConfig);
 
-export const authService = getAuth();
+export const fbaseAuth = getAuth();
+// export const fbaseCreateUserWithEmailAndPassword = createUserWithEmailAndPassword();
+// export const fbaseSignInWithEmailAndPassword = signInWithEmailAndPassword();
+export const fbaseCreateUserWithEmailAndPassword = async (email , password) => {
+    let user;
+
+    try {
+        const userCredential = await createUserWithEmailAndPassword(fbaseAuth, email, password);
+        user = userCredential.user;
+    } catch (error) {
+        console.log(error);
+    }
+
+    return user;
+};
+export const fbaseSignInWithEmailAndPassword = async (email , password) => {
+    let user;
+
+    try {
+        const userCredential = await signInWithEmailAndPassword(fbaseAuth, email, password);
+        user = userCredential.user;
+    } catch (error) {
+        console.log(error);
+    }
+
+    return user;
+};
