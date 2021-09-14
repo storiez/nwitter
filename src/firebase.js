@@ -16,29 +16,13 @@ const firebaseConfig = {
 initializeApp(firebaseConfig);
 
 export const fbaseAuth = getAuth();
-// export const fbaseCreateUserWithEmailAndPassword = createUserWithEmailAndPassword();
-// export const fbaseSignInWithEmailAndPassword = signInWithEmailAndPassword();
 export const fbaseCreateUserWithEmailAndPassword = async (email , password) => {
-    let user;
+    const userCredential = await createUserWithEmailAndPassword(fbaseAuth, email, password);
 
-    try {
-        const userCredential = await createUserWithEmailAndPassword(fbaseAuth, email, password);
-        user = userCredential.user;
-    } catch (error) {
-        console.log(error);
-    }
-
-    return user;
+    return userCredential.user;
 };
 export const fbaseSignInWithEmailAndPassword = async (email , password) => {
-    let user;
+    const userCredential = await signInWithEmailAndPassword(fbaseAuth, email, password);
 
-    try {
-        const userCredential = await signInWithEmailAndPassword(fbaseAuth, email, password);
-        user = userCredential.user;
-    } catch (error) {
-        console.log(error);
-    }
-
-    return user;
+    return userCredential.user;
 };

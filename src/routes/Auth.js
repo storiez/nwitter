@@ -1,9 +1,11 @@
 import { useState } from "react";
+// eslint-disable-next-line no-unused-vars
 import { fbaseAuth , fbaseCreateUserWithEmailAndPassword , fbaseSignInWithEmailAndPassword } from "../firebase";
 
 const Auth = () => {
     const [email, setEmail] = useState("");
     const [password, setPassword] = useState("");
+    // eslint-disable-next-line no-unused-vars
     const [newAccount, setNewAccount] = useState(true);
 
     const onChange = (event) => {
@@ -52,6 +54,8 @@ const Auth = () => {
                     required
                     value={email}
                     onChange={onChange}
+                    minLength="4"
+                    maxLength="50"
                 />
                 <input
                     name="password"
@@ -60,6 +64,8 @@ const Auth = () => {
                     required
                     value={password}
                     onChange={onChange}
+                    minLength="6"
+                    maxLength="20"
                 />
                 <input type="submit" value={newAccount ? "Create Account" : "log In"} />
             </form>
