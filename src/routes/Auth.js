@@ -28,19 +28,15 @@ const Auth = () => {
         event.preventDefault();
 
         try {
-            let data;
-
             if (newAccount) {
                 // create new account
-                data = await fbaseCreateUserWithEmailAndPassword(email, password);
+                await fbaseCreateUserWithEmailAndPassword(email, password);
             } else {
                 // log in
-                data = await fbaseSignInWithEmailAndPassword(email, password);
+                await fbaseSignInWithEmailAndPassword(email, password);
             }
-
-            console.log(data);
         } catch (error) {
-            console.log(error);
+            console.log("error login onSubmit : " , error);
         }
     };
 
